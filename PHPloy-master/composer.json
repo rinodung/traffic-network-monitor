@@ -1,0 +1,30 @@
+{
+    "name": "banago/phploy",
+    "description": "PHPloy - Incremental Git (S)FTP deployment tool that supports submodules, multiple servers and rollbacks.",
+    "license": "MIT",
+    "keywords": ["deploy", "ftp", "sftp", "git"],
+    "authors": [
+        {
+            "name": "Baki Goxhaj",
+            "email": "banago@gmail.com",
+            "homepage": "http://wplancer.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "league/climate": "^3.2",
+        "league/flysystem": "^1.0",
+        "league/flysystem-sftp": "^1.0"
+    },
+    "require-dev": {
+	     "phpunit/phpunit": "4.8.*",
+	      "teqneers/php-stream-wrapper-for-git": "1.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Banago\\PHPloy\\": "src"
+        }
+    },
+    "bin": ["bin/phploy"]
+}
