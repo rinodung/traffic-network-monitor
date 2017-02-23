@@ -1,6 +1,14 @@
 ## Overview
-Network Traffic Monitor is an application to monitor traffice all nodes in a network and display with a visualization interfaces
+Network Traffic Monitor is an application to monitor traffice all nodes in a network and display with a visualization interfaces.
+
+
+
 ## How to install
+
+### Environment
+    Ubuntu 14.04
+    MongoDB 3.2
+    
 ### Sniffer at target node
 
     $ sudo apt-get install libpcap-dev
