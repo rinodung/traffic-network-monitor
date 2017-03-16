@@ -9,7 +9,7 @@
 
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	    
-        <title>Keylight - an audio rhythm experiment.</title>
+        <title>Keylight </title>
 		
 
 		<link href="./assets/styles.css" rel="stylesheet" media="screen">
@@ -21,15 +21,37 @@
 	<p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p>
 </canvas>
 
-<div id="panel" style="position: absolute; top: 0px;left: 40%; ">
+<div id="panel" style="position: absolute; top: 0px;left: 0%; ">
 			<h2 id="network">Network Monitor Version 1.0</h2>
 			<p><b><a id="decreaseSpeed" href="/#">Decrease</a> / <a id="increaseSpeed" href="#">Increase</a> 
 			</b> speed (<span id="speedDisplay">3/6</span>) <b><a id="traffic" href="#">Traffic</a></b></p>
 			
 			<div id="trafficData" style="display:none">
-				<textarea type="textarea" cols='100' rows='40' id="log" style="color: #08de07; background: #000"></textarea>
+				<textarea type="textarea" cols='49' rows='10' id="log" style="color: #08de07; background: transparent;"></textarea>
 			</div>
 </div>
+<div id="ui" >
+	<body onLoad="buildHtmlTable('#DataTable')">
+  <table id="DataTable" style="width: 50%">
+  </table> </body>
+	<table class="table" style="width: 50% ">
+		<thead>
+			<tr class="header" style="color: green">
+				<td class="number" style="width: 15%"> Time</td>
+				<td style="width: 15%">IP src</td>
+				<td style="width: 15%">IP des</td>
+				<td style="width: 10%">Port src</td>
+				<td style="width: 10%">Port des</td>
+				<td style="width: 15%">Protocol</td>
+				<td style="width: 10%">Count</td>
+			</tr>
+		</thead>
+		<tbody id="tab">
+			
+		</tbody>
+	</table>
+</div>
+
 <script type="text/javascript" src="./assets/widgets.js"></script>
 <script src="./assets/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="./assets/keylight.js"></script>
