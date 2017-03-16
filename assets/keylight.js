@@ -102,7 +102,7 @@ var KeylightWorld = new function() {
 			//createKeysFromHash();
 			
 			// If there are no keys, show a intro to explain the usage
-		/*	if( keys.length == 0 ) {
+			/*	if( keys.length == 0 ) {
 				intro.style.display = 'block';
 			}
 			*/
