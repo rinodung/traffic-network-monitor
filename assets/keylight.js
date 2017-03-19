@@ -678,6 +678,7 @@ var KeylightWorld = new function() {
 			context.fillStyle = color;
 			context.arc(key.position.x, key.position.y, key.size.current*key.scale, 0, Math.PI*2, true);
 			context.fill();
+			//context.stroke();
 			
 			//Generate Fade Effect
 			color = context.createRadialGradient(key.reflection.x, key.reflection.y, 0, key.reflection.x, key.reflection.y, key.size.current*key.scale * fadeRadius);
@@ -686,9 +687,10 @@ var KeylightWorld = new function() {
 			//hieu ung khi cham
 			context.beginPath();
 			context.fillStyle = color;
-			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale*2000, 0, Math.PI*2, true);
+			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale*2, 0, Math.PI*2, true);
 			context.fill();
-			
+			//context.stroke();
+
 			if(key.fadeBrightness > 0) {
 				key.fadeBrightness -=fadeStep;	
 			}
@@ -751,8 +753,9 @@ var KeylightWorld = new function() {
 				if( cp && np ) {
 					context.beginPath();
 					context.strokeStyle = color;
-					
+					//line width
 					context.lineWidth = playhead.data.count * cp.scale;
+					context.lineCap = 'round';
 					context.moveTo( cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					//console.log("moveTo" + (cp.x + ( np.x - cp.x ) / positionRate).toString() + ": " +(cp.y + ( np.y - cp.y ) / positionRate  ).toString());
 					for( i = 1, len = playhead.positions.length-1; i < len; i++ ) {
