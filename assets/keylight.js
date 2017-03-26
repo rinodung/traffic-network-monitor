@@ -460,6 +460,22 @@ var KeylightWorld = new function() {
 			}
 		return result;
 	}
+	//tra ve size theo count
+	function checkCount(count) {
+		var result;
+		if(count < 10) {
+			result = 5;
+		} else if(count > 10 && count < 50) {
+			result = 10;
+		} else if(count > 50 && count <100) {
+			result =20;
+		} else if(count > 100 && count <500) {
+			result =30;
+		} else if(count > 500) {
+			result =40;
+		}
+		return result;
+	}
 	function checkGroup(ip) {
 		var result = "";
 		for(var i=0; i< groupData.length; i++) {
@@ -790,7 +806,7 @@ var KeylightWorld = new function() {
 					context.beginPath();
 					context.strokeStyle = color;
 					//line width
-					context.lineWidth = playhead.data.count * cp.scale;
+					context.lineWidth = checkCount(playhead.data.count) * cp.scale;
 					context.lineCap = 'round';
 					context.moveTo( cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					//console.log("moveTo" + (cp.x + ( np.x - cp.x ) / positionRate).toString() + ": " +(cp.y + ( np.y - cp.y ) / positionRate  ).toString());
@@ -933,8 +949,8 @@ function Particle() {
 function Playhead() {
 	this.positions = [ {x: 0, y: 0, rx: 0, ry: 0, scale: 1} ]; // rx & ry = reflectionX/Y
 	this.index = 0;
-	this.size = 104;
-	this.length = 7;
+	this.size = 14;
+	this.length = 14;
 	this.color = { r: 0, g: 0, b: 0, a: 0.8 };
 	this.fromKey = null;
 	this.toKey = null;
