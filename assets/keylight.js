@@ -367,16 +367,6 @@ var KeylightWorld = new function() {
 				keys.push( key );
 			}
 
-			//key.protocol = keysData[i].protocol;
-			//if (key.protocol == "tcp") {playhead.color = 'red';}
-			//else if (key.protocol == "udp") {playhead.color = '#FF00EF';} 
-			/*switch(key.protocol) {
-				case tcp: playhead.color = '#FF00EF';
-				break;
-				case udp: playhead.color = '#FFEF00';
-				break;
-				default: playhead.color = key.color;
-			} */
 			playhead.color = key.color;	
 			
 			playhead.fromKey = key;
@@ -779,25 +769,9 @@ var KeylightWorld = new function() {
 				playhead.addPosition( point );
 				
 			
-				// Set the color of the playhead // giao thuc/ mau
-				/*switch ($playhead.data.protocol) {
-    case "tcp":
-        color = 'red';
-        break;
-    case "udp":
-        color = 'blue';
-        break;
-    
-    default:
-        color = 'green';
-} */
-				/*if(playhead.data.protocol=="tcp") {
-					playhead.color = '#FF00EF';
-				} elseif($playhead.data.protocol=="udp") {
-				 	playhead.color = '#FFEF00';
-				} else {playhead.color = 'white';} */
+				// Set the color of the playhead // giao thuc/ mau				
 				//color = 'rgba('+playhead.color.r+','+playhead.color.g+','+playhead.color.b+',1)';
-				color= checkProtocol(playhead.data.protocol);//'white';
+				color= checkProtocol(playhead.data.protocol);
 				
 				var cp = playhead.positions[ 0 ];
 				var np = playhead.positions[ 1 ];
@@ -979,115 +953,11 @@ Playhead.prototype.addPosition = function(p) {
 Playhead.prototype.getPosition = function() {
 	return this.positions[this.positions.length-1];
 };
-/*
-function Particle2( x, y ) {
-    this.x = x;
-    this.y = y;
-    // track the past coordinates of each particle to create a trail effect, increase the coordinate count to create more prominent trails
-    this.coordinates = [];
-    this.coordinateCount = 5;
-    while( this.coordinateCount-- ) {
-        this.coordinates.push( [ this.x, this.y ] );
-    }
-    // set a random angle in all possible directions, in radians
-    this.angle = random( 0, Math.PI * 2 );
-    this.speed = random( 1, 10 );
-    // friction will slow the particle down
-    this.friction = 0.95;
-    // gravity will be applied and pull the particle down
-    this.gravity = 1;
-    // set the hue to a random number +-20 of the overall hue variable
-    this.hue = random( hue - 20, hue + 20 );
-    this.brightness = random( 50, 80 );
-    this.alpha = 1;
-    // set how fast the particle fades out
-    this.decay = random( 0.015, 0.03 );
-}
-// update particle
-Particle2.prototype.update = function( index ) {
-    // remove last item in coordinates array
-    this.coordinates.pop();
-    // add current coordinates to the start of the array
-    this.coordinates.unshift( [ this.x, this.y ] );
-    // slow down the particle
-    this.speed *= this.friction;
-    // apply velocity
-    this.x += Math.cos( this.angle ) * this.speed;
-    this.y += Math.sin( this.angle ) * this.speed + this.gravity;
-    // fade out the particle
-    this.alpha -= this.decay;
- 
-    // remove the particle once the alpha is low enough, based on the passed in index
-    if( this.alpha <= this.decay ) {
-        particles.splice( index, 1 );
-    }
-}
-// draw particle
-Particle2.prototype.draw = function() {
-    context. beginPath();
-    // move to the last tracked coordinates in the set, then draw a line to the current x and y
-    context.moveTo( this.coordinates[ this.coordinates.length - 1 ][ 0 ], this.coordinates[ this.coordinates.length - 1 ][ 1 ] );
-    context.lineTo( this.x, this.y );
-    context.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
-    context.stroke();
-}*/
-/*// create particle group/explosion
-function createParticles( x, y ) {
-    // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
-    var particleCount = 60;
-    while( particleCount-- ) {
-        particles.push( new Particle2( x, y ) );
-    }
-}*/
+
 
 $("#traffic").click(function(){
 		$("#trafficData").slideToggle();	
 });
-
-// create particle group/explosion
-/*function createParticles( x, y ) {
-    // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
-    var particleCount = 60;
-    while( particleCount-- ) {
-        particles.push( new Particle( x, y ) );
-    }
-} */
-
-/*
-// Builds the HTML Table out of myList.
-function buildHtmlTable(selector) {
-  var columns = addAllColumnHeaders(keysData, selector);
-
-  for (var i = 0; i < keysData.length; i++) {
-    var row$ = $('<tr/>');
-    for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-      var cellValue = keysData[i][columns[colIndex]];
-      if (cellValue == null) cellValue = "";
-      row$.append($('<td/>').html(cellValue));
-    }
-    $(selector).append(row$);
-  }
-}
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records.
-function addAllColumnHeaders(keysData, selector) {
-  var columnSet = [];
-  var headerTr$ = $('<tr/>');
-
-  for (var i = 0; i < keysData.length; i++) {
-    var rowHash = keysData[i];
-    for (var key in rowHash) {
-      if ($.inArray(key, columnSet) == -1) {
-        columnSet.push(key);
-        headerTr$.append($('<th/>').html(key));
-      }
-    }
-  }
-  $(selector).append(headerTr$);
-
-  return columnSet;
-} */
 
 KeylightWorld.init();
 	
