@@ -309,11 +309,17 @@ var KeylightWorld = new function() {
 		keys = [];
 		var traffic = '[{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.1", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "7891", "protocol" : "udp", "count" : "2", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "121", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "71", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "51", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "41", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.11", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "31", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.4", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.6", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.9", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
 					   '{ "_id" : "57e29cb7eb0fdd0fea4b508d", "ip_src" : "127.0.0.10", "ip_dest" : "192.168.10.1", "port_src" : "22", "port_dest" : "51090", "protocol" : "tcp", "count" : "7", "time" : 1474469043}]';
@@ -440,6 +446,19 @@ var KeylightWorld = new function() {
 				}
 			});*/
 		
+	}
+	//tra ve mau theo giao thuc
+	function checkProtocol(protocol) {
+		var result;
+		
+			if(protocol == "tcp") {
+				result = '#EF00EF';
+			} else if(protocol == "udp") {
+				result = 'red';
+			} else {
+				result = 'white';
+			}
+		return result;
 	}
 	function checkGroup(ip) {
 		var result = "";
@@ -744,8 +763,25 @@ var KeylightWorld = new function() {
 				playhead.addPosition( point );
 				
 			
-				// Set the color of the playhead
-				color = 'rgba('+playhead.color.r+','+playhead.color.g+','+playhead.color.b+',1)';
+				// Set the color of the playhead // giao thuc/ mau
+				/*switch ($playhead.data.protocol) {
+    case "tcp":
+        color = 'red';
+        break;
+    case "udp":
+        color = 'blue';
+        break;
+    
+    default:
+        color = 'green';
+} */
+				/*if(playhead.data.protocol=="tcp") {
+					playhead.color = '#FF00EF';
+				} elseif($playhead.data.protocol=="udp") {
+				 	playhead.color = '#FFEF00';
+				} else {playhead.color = 'white';} */
+				//color = 'rgba('+playhead.color.r+','+playhead.color.g+','+playhead.color.b+',1)';
+				color= checkProtocol(playhead.data.protocol);//'white';
 				
 				var cp = playhead.positions[ 0 ];
 				var np = playhead.positions[ 1 ];
@@ -763,6 +799,7 @@ var KeylightWorld = new function() {
 						np = playhead.positions[i+1];
 						
 						context.quadraticCurveTo( cp.x, cp.y, cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
+						//context.bezierCurveTo( cp.x, cp.y, cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ), cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					}
 					
 					context.stroke();
