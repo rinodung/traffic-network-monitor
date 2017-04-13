@@ -22,8 +22,8 @@ var KeylightWorld = new function() {
 	var usera = navigator.userAgent.toLowerCase();
 	var isMobile = (usera.indexOf('android') != -1) || (usera.indexOf('iphone') != -1);
 	
-	var worldRect = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight };
-	var map = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight };
+	var worldRect = { x: 0, y: 0, width: 1024, height: 600 };
+	var map = { x: 0, y: 0, width: 1024, height: 600 };
 	
 	var canvas;
 	var context;
@@ -34,14 +34,14 @@ var KeylightWorld = new function() {
 	var keys = [];
 	var reset = 0;
 	var playhead;
-	var playheadSpeed = 1;
+	var playheadSpeed = 2;
 	var playheads = [];
 	var audioFiles = [];
 	var groupData = [];
 	var mouseX = (window.innerWidth - worldRect.width);
 	var mouseY = (window.innerHeight - worldRect.height);
 	var mouseIsDown = false;
-	var hue = 120;
+	
 	// This is used to keep track of the users last interaction to stop playing sounds after lack of input (save bandwidth)
 	var lastMouseMoveTime = new Date().getTime();
 	
@@ -102,7 +102,7 @@ var KeylightWorld = new function() {
 			//createKeysFromHash();
 			
 			// If there are no keys, show a intro to explain the usage
-		/*	if( keys.length == 0 ) {
+			/*	if( keys.length == 0 ) {
 				intro.style.display = 'block';
 			}
 			*/
@@ -219,9 +219,8 @@ var KeylightWorld = new function() {
 		canvas.width = worldRect.width;
 		canvas.height = worldRect.height;
 		canvas.style.position ='absolute';
-		//canvas.style.left = (window.innerWidth - canvas.width) * .5 + 'px';
-		//canvas.style.top = (window.innerHeight - canvas.height) * .5 + 'px';
-		
+		canvas.style.left = (window.innerWidth - canvas.width) * .5 + 'px';
+		canvas.style.top = (window.innerHeight - canvas.height) * .5 + 'px';
 	/*	paused.style.position = 'absolute';
 		paused.style.top = (window.innerHeight - 60) * .5 + 'px';
 		paused.style.left = (window.innerWidth - worldRect.width) * .5 + 'px';
@@ -234,9 +233,7 @@ var KeylightWorld = new function() {
 	// Convenience method called from many mouse event handles to update the current mouse position
 	function updateMousePosition(event) {
 		mouseX = event.clientX - (window.innerWidth - worldRect.width) * .5;
-		
 		mouseY = event.clientY - (window.innerHeight - worldRect.height) * .5;
-		
 	}
 	
 	// Updates the keys in the hash (url suffix) to reflect the current state
@@ -325,8 +322,7 @@ var KeylightWorld = new function() {
 					   '{ "_id" : "57e29cb7eb0fdd0fea4b508d", "ip_src" : "127.0.0.10", "ip_dest" : "192.168.10.1", "port_src" : "22", "port_dest" : "51090", "protocol" : "tcp", "count" : "7", "time" : 1474469043}]';
 		var keysData = JSON.parse(traffic);	
 		var key;
-		for(var i = 0; i< keysData.length; i ++) 
-		{
+		for(var i = 0; i< keysData.length; i ++) {
 			
 			if(keysData[i].ip_src == keysData[i].ip_dest) continue;
 			playhead = new Playhead();
@@ -365,8 +361,7 @@ var KeylightWorld = new function() {
 				updateKeyColor( key, key.position.x, key.position.y );
 			
 				keys.push( key );
-			}
-
+      }
 			playhead.color = key.color;	
 			
 			playhead.fromKey = key;
@@ -617,7 +612,7 @@ var KeylightWorld = new function() {
 	
 		for (i = 0, ilen = keys.length; i < ilen; i++) {
 			key = keys[i];
-			//cham cham
+			
 			// Are there any particles we need to process for this key?
 			if( key.particles.length > 0 ) {
 				
@@ -635,8 +630,6 @@ var KeylightWorld = new function() {
 						
 						var x = particle.position.x + Math.cos( particle.rotation ) * particle.rotationRadius;
 						var y = particle.position.y + Math.sin( particle.rotation ) * particle.rotationRadius;
-							
-						
 						
 						context.beginPath();
 						context.fillStyle = 'rgba('+key.color.r+','+key.color.g+','+key.color.b+','+(0.3+(Math.random()*0.7))+')';
@@ -658,7 +651,7 @@ var KeylightWorld = new function() {
 				context.fillStyle = "#ffffff";
 			}
 			
-			//make a reflection 
+			//make a reflection
 			key.scale = 0;
 			key.scale += Math.max(Math.min((key.position.y/(map.y+map.height)),1),0);
 			key.scale = Math.max(key.scale,0.2);
@@ -709,7 +702,7 @@ var KeylightWorld = new function() {
 			color = context.createRadialGradient(key.reflection.x, key.reflection.y, 0, key.reflection.x, key.reflection.y, key.size.current*key.scale * fadeRadius);
 			color.addColorStop(0,'rgba('+key.color.r+','+key.color.g+','+key.color.b+','+key.color.a*key.fadeBrightness+')');//default 0, emit 1
 			color.addColorStop(1,'rgba('+key.color.r+','+key.color.g+','+key.color.b+',0)');
-			//hieu ung khi cham
+			
 			context.beginPath();
 			context.fillStyle = color;
 			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale*2, 0, Math.PI*2, true);
@@ -779,9 +772,11 @@ var KeylightWorld = new function() {
 				if( cp && np ) {
 					context.beginPath();
 					context.strokeStyle = color;
+
 					//line width
 					context.lineWidth = checkCount(playhead.data.count) * cp.scale;
 					context.lineCap = 'round';
+
 					context.moveTo( cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					//console.log("moveTo" + (cp.x + ( np.x - cp.x ) / positionRate).toString() + ": " +(cp.y + ( np.y - cp.y ) / positionRate  ).toString());
 					for( i = 1, len = playhead.positions.length-1; i < len; i++ ) {
@@ -859,7 +854,7 @@ function Key() {
 	this.position = { x: 0, y: 0 };
 	this.reflection = { x: 0, y: 0 };
 	this.color = { r: 0, g: 0, b: 0, a: 1 };
-	this.size = { current: 5, target: 12 };
+	this.size = { current: 0, target: 16 };
 	this.scale = 1;
 	this.dragging = false;
 	this.particles = [];
@@ -913,9 +908,8 @@ function Particle() {
 	this.velocity = { x: 0, y: 0, r: 0 };
 	this.rotation = 0;
 	this.rotationRadius = 0;
-	
 }
-//Particle.prototype = new Point();
+Particle.prototype = new Point();
 
 /**
  * A playhead contain a position array, to move from start to end key
@@ -923,8 +917,10 @@ function Particle() {
 function Playhead() {
 	this.positions = [ {x: 0, y: 0, rx: 0, ry: 0, scale: 1} ]; // rx & ry = reflectionX/Y
 	this.index = 0;
-	this.size = 14;
-	this.length = 14;
+
+	this.size = 2;
+	this.length = 10;
+
 	this.color = { r: 0, g: 0, b: 0, a: 0.8 };
 	this.fromKey = null;
 	this.toKey = null;
@@ -958,6 +954,7 @@ Playhead.prototype.getPosition = function() {
 $("#traffic").click(function(){
 		$("#trafficData").slideToggle();	
 });
+
 
 KeylightWorld.init();
 	
