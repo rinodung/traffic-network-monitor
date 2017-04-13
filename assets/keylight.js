@@ -306,11 +306,17 @@ var KeylightWorld = new function() {
 		keys = [];
 		var traffic = '[{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.1", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "7891", "protocol" : "udp", "count" : "2", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "121", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "71", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "51", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "41", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.11", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "31", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.4", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.6", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
-						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
 						'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.9", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
 					   '{ "_id" : "57e29cb7eb0fdd0fea4b508d", "ip_src" : "127.0.0.10", "ip_dest" : "192.168.10.1", "port_src" : "22", "port_dest" : "51090", "protocol" : "tcp", "count" : "7", "time" : 1474469043}]';
@@ -355,7 +361,7 @@ var KeylightWorld = new function() {
 				updateKeyColor( key, key.position.x, key.position.y );
 			
 				keys.push( key );
-			} 
+      }
 			playhead.color = key.color;	
 			
 			playhead.fromKey = key;
@@ -425,6 +431,35 @@ var KeylightWorld = new function() {
 				}
 			});*/
 		
+	}
+	//tra ve mau theo giao thuc
+	function checkProtocol(protocol) {
+		var result;
+		
+			if(protocol == "tcp") {
+				result = '#EF00EF';
+			} else if(protocol == "udp") {
+				result = 'red';
+			} else {
+				result = 'white';
+			}
+		return result;
+	}
+	//tra ve size theo count
+	function checkCount(count) {
+		var result;
+		if(count < 10) {
+			result = 5;
+		} else if(count > 10 && count < 50) {
+			result = 10;
+		} else if(count > 50 && count <100) {
+			result =20;
+		} else if(count > 100 && count <500) {
+			result =30;
+		} else if(count > 500) {
+			result =40;
+		}
+		return result;
 	}
 	function checkGroup(ip) {
 		var result = "";
@@ -661,6 +696,7 @@ var KeylightWorld = new function() {
 			context.fillStyle = color;
 			context.arc(key.position.x, key.position.y, key.size.current*key.scale, 0, Math.PI*2, true);
 			context.fill();
+			//context.stroke();
 			
 			//Generate Fade Effect
 			color = context.createRadialGradient(key.reflection.x, key.reflection.y, 0, key.reflection.x, key.reflection.y, key.size.current*key.scale * fadeRadius);
@@ -671,7 +707,8 @@ var KeylightWorld = new function() {
 			context.fillStyle = color;
 			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale*2, 0, Math.PI*2, true);
 			context.fill();
-			
+			//context.stroke();
+
 			if(key.fadeBrightness > 0) {
 				key.fadeBrightness -=fadeStep;	
 			}
@@ -725,8 +762,9 @@ var KeylightWorld = new function() {
 				playhead.addPosition( point );
 				
 			
-				// Set the color of the playhead
-				color = 'rgba('+playhead.color.r+','+playhead.color.g+','+playhead.color.b+',1)';
+				// Set the color of the playhead // giao thuc/ mau				
+				//color = 'rgba('+playhead.color.r+','+playhead.color.g+','+playhead.color.b+',1)';
+				color= checkProtocol(playhead.data.protocol);
 				
 				var cp = playhead.positions[ 0 ];
 				var np = playhead.positions[ 1 ];
@@ -734,8 +772,11 @@ var KeylightWorld = new function() {
 				if( cp && np ) {
 					context.beginPath();
 					context.strokeStyle = color;
-					
-					context.lineWidth = 2 * cp.scale;
+
+					//line width
+					context.lineWidth = checkCount(playhead.data.count) * cp.scale;
+					context.lineCap = 'round';
+
 					context.moveTo( cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					//console.log("moveTo" + (cp.x + ( np.x - cp.x ) / positionRate).toString() + ": " +(cp.y + ( np.y - cp.y ) / positionRate  ).toString());
 					for( i = 1, len = playhead.positions.length-1; i < len; i++ ) {
@@ -743,6 +784,7 @@ var KeylightWorld = new function() {
 						np = playhead.positions[i+1];
 						
 						context.quadraticCurveTo( cp.x, cp.y, cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
+						//context.bezierCurveTo( cp.x, cp.y, cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ), cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					}
 					
 					context.stroke();
@@ -875,8 +917,10 @@ Particle.prototype = new Point();
 function Playhead() {
 	this.positions = [ {x: 0, y: 0, rx: 0, ry: 0, scale: 1} ]; // rx & ry = reflectionX/Y
 	this.index = 0;
+
 	this.size = 2;
 	this.length = 10;
+
 	this.color = { r: 0, g: 0, b: 0, a: 0.8 };
 	this.fromKey = null;
 	this.toKey = null;
@@ -905,6 +949,7 @@ Playhead.prototype.addPosition = function(p) {
 Playhead.prototype.getPosition = function() {
 	return this.positions[this.positions.length-1];
 };
+
 
 $("#traffic").click(function(){
 		$("#trafficData").slideToggle();	
