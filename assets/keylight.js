@@ -308,10 +308,10 @@ var KeylightWorld = new function() {
 		var traffic ='';
 		
 		$.getJSON( "http://192.168.2.130/index.php/data/get/10", function(data) {
-		  	traffic = data;
+		  	
 		  	keys = [];
 			
-			var keysData = JSON.parse(traffic);	
+			var keysData = data;	
 			var key;
 			for(var i = 0; i< keysData.length; i ++) 
 			{
