@@ -25,9 +25,8 @@ class Data extends CI_Controller {
 		$table = "traffic";
 		$data = $this->data_model->getData($table, $num);
 		
-		echo "<pre>";
 		print_r($data);
-		echo "</pre>";
+		
 	}
 
 }
