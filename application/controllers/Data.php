@@ -25,7 +25,7 @@ class Data extends CI_Controller {
 		$table = "traffic";
 		$data = $this->data_model->getData($table, $num);
 		
-		print_r($data);
+		echo json_encode($data);
 		
 	}
 
