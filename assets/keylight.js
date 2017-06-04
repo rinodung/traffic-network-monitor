@@ -769,7 +769,9 @@ var KeylightWorld = new function() {
 					playhead.index = -1;
 					reset++;
 					
-					var logValue = $("#log").val() + JSON.stringify(playhead.data) + "\r\n";
+					//var logValue = $("#log").val() + JSON.stringify(playhead.data) + "\r\n";
+					var dd = new Date(playhead.data.time);
+					var logValue = $("#log").val() + dd + " | Source(" + playhead.data.ip_src + ":" + playhead.data.port_src + ") | Dest(" + playhead.data.ip_dest + ":" + playhead.data.port_dest + ") | Count(" + playhead.data.count + ") | " + playhead.data.protocol + "\r\n";
 					$("#log").val(logValue);
 					$("#log").scrollTop = $("#log").scrollHeight;
 					$('#log').scrollTop($('#log')[0].scrollHeight);
