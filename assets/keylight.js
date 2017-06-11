@@ -307,7 +307,7 @@ var KeylightWorld = new function() {
 		groupData = JSON.parse(groups);	
 		var traffic ='';
 		
-		$.getJSON( "http://192.168.2.130/index.php/data/get", function(data) {
+		$.getJSON( "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get", function(data) {
 		  	
 		  	keys = [];
 			
