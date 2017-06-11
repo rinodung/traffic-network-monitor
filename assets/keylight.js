@@ -566,6 +566,8 @@ var KeylightWorld = new function() {
 	}
 
 	function loop() {
+		setInterval( loadData, 60000 );
+
 		
 		context.clearRect(worldRect.x, worldRect.y, worldRect.width, worldRect.height);
 		
