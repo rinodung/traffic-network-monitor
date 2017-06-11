@@ -296,7 +296,7 @@ var KeylightWorld = new function() {
 		
 		updateKeysInHash();
 	}
-	function loadData() {
+	setInterval(function loadData() {
 		playheads = [];
 		
 		var groups = '[{"name":"server", "ip": ["192.168.10.1"]},' +
@@ -392,9 +392,9 @@ var KeylightWorld = new function() {
 		    console.log( "complete" );
 		  });
 		 	
-	}
+	}, 30000);
 	//load data every 60 sec
-	setInterval( loadData, 60000 );
+	//setInterval( loadData, 60000 );
 	//tra ve mau theo giao thuc
 	function checkProtocol(protocol) {
 		var result;
@@ -566,8 +566,6 @@ var KeylightWorld = new function() {
 	}
 
 	function loop() {
-		setInterval( loadData, 60000 );
-
 		
 		context.clearRect(worldRect.x, worldRect.y, worldRect.width, worldRect.height);
 		
