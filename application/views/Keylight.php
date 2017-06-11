@@ -21,13 +21,13 @@
 	<p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p>
 </canvas>
 
-<div id="panel" style="position: absolute; top: 0px;left: 40%; ">
-			<h2 id="network">Network Monitor Version 1.0</h2>
+<div id="panel" style="position: absolute; top: 0px;left: 0%; ">
+			<h2 id="network">Network Monitor Version 1.1</h2>
 			<p><b><a id="decreaseSpeed" href="/#">Decrease</a> / <a id="increaseSpeed" href="#">Increase</a> 
 			</b> speed (<span id="speedDisplay">3/6</span>) <b><a id="traffic" href="#">Traffic</a></b></p>
 			
 			<div id="trafficData" style="display:none">
-				<textarea type="textarea" cols='100' rows='40' id="log" style="color: #08de07; background: #000"></textarea>
+				<textarea type="textarea" cols='49' rows='10' id="log" style="color: #08de07; background: transparent;"></textarea>
 			</div>
 </div>
 <script type="text/javascript" src="./assets/widgets.js"></script>
