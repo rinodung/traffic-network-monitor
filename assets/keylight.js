@@ -393,6 +393,8 @@ var KeylightWorld = new function() {
 		  });
 		 	
 	}
+	//load data every 60 sec
+	setInterval( loadData, 60000 );
 	//tra ve mau theo giao thuc
 	function checkProtocol(protocol) {
 		var result;
