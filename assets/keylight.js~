@@ -306,10 +306,8 @@ var KeylightWorld = new function() {
 					'{"name" : "group4", "ip": ["127.0.0.8", "127.0.0.9","127.0.0.10"]}]';
 		groupData = JSON.parse(groups);	
 		var traffic ='';
-		//get data realtime
-		var currenttime = new Date();
-		var currenttime_sec = currenttime.getTime()/1000;
-		$.getJSON( "http://127.0.0.1/traffic-network-monitor/index.php/data/get",{ $start: currenttime_sec - 30, $end: currenttime_sec} , function(data) {
+		
+		$.getJSON( "http://127.0.0.1/traffic-network-monitor/index.php/data/get", function(data) {
 		  	
 		  	keys = [];
 			
@@ -396,7 +394,7 @@ var KeylightWorld = new function() {
 		 	
 	}
 	//load data every 60 sec
-	setInterval( loadData, 30000 );
+	setInterval( loadData, 5000 );
 	//tra ve mau theo giao thuc
 	function checkProtocol(protocol) {
 		var result;
@@ -774,7 +772,7 @@ var KeylightWorld = new function() {
 					reset++;
 					
 					//var logValue = $("#log").val() + JSON.stringify(playhead.data) + "\r\n";
-					var dd = new Date(playhead.data.time * 1000);
+					var dd = new Date(playhead.data.time);
 					var logValue = $("#log").val() + dd + " | Source(" + playhead.data.ip_src + ":" + playhead.data.port_src + ") | Dest(" + playhead.data.ip_dest + ":" + playhead.data.port_dest + ") | Count(" + playhead.data.count + ") | " + playhead.data.protocol + "\r\n";
 					$("#log").val(logValue);
 					$("#log").scrollTop = $("#log").scrollHeight;

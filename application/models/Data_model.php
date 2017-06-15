@@ -8,9 +8,13 @@ class Data_model extends CI_Model {
     {
         parent::__construct();
     }
-    public function getData($table, $limit = 100) {
-        
+    public function getData($table, $limit = 100, $start=0, $end =0) {
+        if($start != 0 && $end !=0 ) {
+        $result = $this->mongo_db->where_between("time",$start,$end)->limit($limit)->get($table);
+    } else {
         $result = $this->mongo_db->limit($limit)->get($table);
+    }
+        
         return $result;
     }
     
