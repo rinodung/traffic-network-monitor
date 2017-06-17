@@ -18,12 +18,12 @@ class Data extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function get($num = 100, $start =0, $end =0)
+	public function get($limit = 100, $start =0, $end =0)
 	{
 		$this->load->library("Mongo_db");
 		$this->load->model("data_model");
 		$table = "traffic";
-		$data = $this->data_model->getData($table, $num, $start, $end);
+		$data = $this->data_model->getData($table, $limit, $start, $end);
 		echo json_encode($data);
 		
 	}

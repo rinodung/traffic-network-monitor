@@ -10,7 +10,7 @@ class Data_model extends CI_Model {
     }
     public function getData($table, $limit = 100, $start=0, $end =0) {
         if($start != 0 && $end !=0 ) {
-        $result = $this->mongo_db->where_between("time",$start,$end)->limit($limit)->get($table);
+        $result = $this->mongo_db->where_between("time",$start/1000,$end/1000)->limit($limit)->get($table);
     } else {
         $result = $this->mongo_db->limit($limit)->get($table);
     }

@@ -308,8 +308,16 @@ var KeylightWorld = new function() {
 		var traffic ='';
 		//get data realtime
 		var currenttime = new Date();
-		var currenttime_sec = currenttime.getTime()/1000;
-		$.getJSON( "http://127.0.0.1/traffic-network-monitor/index.php/data/get",{ $start: currenttime_sec - 30, $end: currenttime_sec} , function(data) {
+		var currenttime_e = currenttime.getTime();
+		var currenttime_s = currenttime_e - 90000;
+		var start = currenttime_s;
+		var end = currenttime_e;
+		var timeD = "/101/" + start + "/" + end +"/";
+		var linkdata = "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get"+timeD;
+		//var linkdata = "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get";
+		//var timedata = {num: 102, start: start, end: end }; 
+		$.getJSON( linkdata)
+		.done(function(data) {
 		  	
 		  	keys = [];
 			
