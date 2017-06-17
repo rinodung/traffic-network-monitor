@@ -125,7 +125,8 @@ $ make install
 OR
 sudo apt-get install libjson0 libjson0-dev
 ```
-
+## Edit link getJson
+edit link getJson in /assets/keylight.js line 316
 
 
 
