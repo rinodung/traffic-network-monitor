@@ -3,13 +3,13 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
 
-		<meta name="description" content="The experiments and interactive playground of Hakim El Hattab.">
-		<meta name="keywords" content="hakim, elhattab, hakim el hattab, hakim elhattab, interactive, developer, flash, html5, canvas, web, experiments">
+		<meta name="description" content="Traffic network monitor.">
+		<meta name="keywords" content="CTF, Visualization, traffic, network, monitor, developer, flash, html5, canvas, web, experiments">
 		<meta name="author" content="Hakim El Hattab">
 
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	    
-        <title>Keylight - an audio rhythm experiment.</title>
+        <title>CTF Visualization</title>
 		
 
 		<link href="./assets/styles.css" rel="stylesheet" media="screen">
