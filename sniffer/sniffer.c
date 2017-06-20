@@ -50,11 +50,16 @@ int packetTimeout = 5;
 long BUFFER_SIZE = 1024 * 64;
 int SERVER_PORT = 7891;
 char SERVER_HOST[] = "127.0.0.1";
-int main()
-{
+char group[20];
+int main(int argc, char *argv[])
+{   
     int saddr_size , data_size;
     struct sockaddr saddr;
-         
+    if (argv[1]){
+
+       strcpy (group,argv[1]);
+       printf("%s",group);
+    }
     unsigned char *buffer = (unsigned char *) malloc(BUFFER_SIZE); //Its Big!
     
     /*Create UDP socket*/
@@ -111,11 +116,13 @@ void sendPacket() {
     diff_t = end_t - start_t;
     
     if(diff_t >= packetTimeout) {
-    	str = json_object_to_json_string_ext(json_object_arr, JSON_C_TO_STRING_PRETTY);
+        str = json_object_to_json_string_ext(json_object_arr, JSON_C_TO_STRING_PRETTY);
         
         nDataBuffer = strlen(str) + 1;
         
         strcpy(dataBuffer, str);
+
+        printf("%s%s",dataBuffer,"hihihi");
         sendto(clientSocket, dataBuffer, nDataBuffer, 0, (struct sockaddr *)&serverAddr,addr_size);
         printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d \nStart: %d End: %d  Timer: %d Sent at %ld \n%s\n\n\n", tcp , udp , icmp , igmp , others , total, start_t, end_t, diff_t, time(NULL), str);
         
@@ -123,7 +130,7 @@ void sendPacket() {
         time(&start_t);
         tcp = udp = icmp = others = igmp = total = 0;
         json_object_arr = json_object_new_array();
-    } 
+    }  
    
   
 
@@ -168,6 +175,9 @@ void ProcessPacket(unsigned char* buffer, int size)
         count = 1;
         json_object_object_add(jobj, "count", json_object_new_int(count));
         json_object_object_add(jobj, "time", json_object_new_int(currentTime));
+        if (group){
+         json_object_object_add(jobj, "group", json_object_new_string(group));
+        }
         json_object_array_add(json_object_arr, jobj);
         
     } 

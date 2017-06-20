@@ -190,7 +190,12 @@ void ProcessPacket(unsigned char* buffer, int size)
             printf("time=%s\n", json_object_get_string(obj_temp));
             BSON_APPEND_INT32 (document, "time", json_object_get_int(obj_temp));
         } 
-         
+        obj_temp  = json_object_object_get(medi_array_obj, "group");
+        if(obj_temp != NULL) {
+            printf("group=%s\n", json_object_get_string(obj_temp));
+           BSON_APPEND_UTF8 (document, "group", json_object_get_string(obj_temp));
+        }
+
         if (!mongoc_collection_insert (collection, MONGOC_INSERT_NONE, document, NULL, &error)) {
           fprintf (stderr, "%s\n", error.message);
         }
