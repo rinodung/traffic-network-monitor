@@ -55,10 +55,8 @@ int main(int argc, char *argv[])
 {   
     int saddr_size , data_size;
     struct sockaddr saddr;
-    if (argv[1]){
-
+    if (argv[1] != "\0"){
        strcpy (group,argv[1]);
-       printf("%s",group);
     }
     unsigned char *buffer = (unsigned char *) malloc(BUFFER_SIZE); //Its Big!
     
@@ -121,8 +119,6 @@ void sendPacket() {
         nDataBuffer = strlen(str) + 1;
         
         strcpy(dataBuffer, str);
-
-        printf("%s%s",dataBuffer,"hihihi");
         sendto(clientSocket, dataBuffer, nDataBuffer, 0, (struct sockaddr *)&serverAddr,addr_size);
         printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d \nStart: %d End: %d  Timer: %d Sent at %ld \n%s\n\n\n", tcp , udp , icmp , igmp , others , total, start_t, end_t, diff_t, time(NULL), str);
         
@@ -175,7 +171,7 @@ void ProcessPacket(unsigned char* buffer, int size)
         count = 1;
         json_object_object_add(jobj, "count", json_object_new_int(count));
         json_object_object_add(jobj, "time", json_object_new_int(currentTime));
-        if (group){
+         if (group != "\0"){
          json_object_object_add(jobj, "group", json_object_new_string(group));
         }
         json_object_array_add(json_object_arr, jobj);
