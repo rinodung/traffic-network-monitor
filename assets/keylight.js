@@ -134,6 +134,36 @@ var KeylightWorld = new function() {
 	function documentMouseMoveHandler(event) {
 		updateMousePosition( event );
 		
+		//hover displays ip		
+		if(!mouseIsDown) {
+			updateMousePosition( event );
+
+			lastMouseMoveTime = new Date().getTime();
+			var closestDistance = 9999;
+			var currentDistance = 9999;
+			var closestIndex = -1;
+
+			for( var i = 0, len = keys.length; i < len; i++ ) {
+				var key = keys[i];
+
+				currentDistance = key.distanceTo( { x: mouseX, y: mouseY } );
+				if( currentDistance < closestDistance && currentDistance < 40 ) {
+					closestDistance = currentDistance;
+					closestIndex = i;11
+				}
+			}
+			if( keys[closestIndex] ) {
+				$('#ip').css({'display' :'inline','left':mouseX,'top':mouseY});
+				$('#ip')[0].innerHTML = keys[closestIndex].ip;
+			}
+			else{
+				$('#ip').css({'display': 'none'});
+			}
+			if( mouseIsDown && !isDragging ) {
+				startDragging();
+			}
+		}
+
 		lastMouseMoveTime = new Date().getTime();
 		
 		if( mouseIsDown && !isDragging ) {

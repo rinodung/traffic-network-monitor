@@ -20,7 +20,8 @@
 <canvas id="world" width="100%" height="100%" style="position: absolute; top: 0px; float:left;">
 	<p class="noCanvas">You need a <a href="http://www.google.com/chrome">modern browser</a> to view this.</p>
 </canvas>
-
+//css hover
+<div id="ip" style="display:none; color:red; position: absolute; padding:20px; top: 100px; left: 0%; ">192.168.1.1</div>
 <div id="panel" style="position: absolute; top: 0px;left: 0%; ">
 			<h2 id="network">Network Monitor Version 1.1</h2>
 			<p><b><a id="decreaseSpeed" href="/#">Decrease</a> / <a id="increaseSpeed" href="#">Increase</a> 
