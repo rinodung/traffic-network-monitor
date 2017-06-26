@@ -343,15 +343,15 @@ var KeylightWorld = new function() {
 		var start = currenttime_s;
 		var end = currenttime_e;
 		var timeD = "/101/" + start + "/" + end +"/";
-		var linkdata = "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get"+timeD;
+		var linkdata = "index.php/data/get"+timeD;
 		//var linkdata = "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get";
 		//var timedata = {num: 102, start: start, end: end }; 
 		$.getJSON( linkdata)
 		.done(function(data) {
-		  	
-		  	keys = [];
 			
-			var keysData = data;	
+ 			var keysData = data;
+			var keysData = sampleTraffic;	//uncomment if using ajax
+			keys = [];
 			var key;
 			for(var i = 0; i< keysData.length; i ++) 
 			{
@@ -426,10 +426,100 @@ var KeylightWorld = new function() {
 		    console.log( "second success" );
 		  })
 		  .fail(function() {
-		    console.log( "error" );
+
 		  })
 		  .always(function() {
 		    console.log( "complete" );
+		    keys = [];
+		    var sampleTraffic = '[{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.1", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "7891", "protocol" : "udp", "count" : "2", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "121", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "71", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.2", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "51", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.3", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "41", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.11", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "icmp", "count" : "31", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.2", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.4", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.5", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.6", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.7", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "tcp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.8", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+ 					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.9", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
+ 				   '{ "_id" : "57e29cb7eb0fdd0fea4b508d", "ip_src" : "127.0.0.10", "ip_dest" : "192.168.10.1", "port_src" : "22", "port_dest" : "51090", "protocol" : "tcp", "count" : "7", "time" : 1474469043}]';
+ 			
+ 			
+			var keysData =  JSON.parse(sampleTraffic);	//uncomment if using ajax
+			
+			var key;
+			for(var i = 0; i< keysData.length; i ++) 
+			{
+				
+				if(keysData[i].ip_src == keysData[i].ip_dest) continue;
+				playhead = new Playhead();
+				if(!(key = checkIPExists(keysData[i].ip_src))) {
+					key = new Key();
+					
+					var groupname = checkGroup(keysData[i].ip_src);
+					if(groupname == "server") {
+						key.position.x = worldRect.width/2;
+						key.position.y =  worldRect.height/2;
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					} else if(groupname == "group1") {
+						key.position.x = Math.random() * (worldRect.width/4);
+						key.position.y = Math.random() * (worldRect.height/4);
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					} else if(groupname == "group2") {
+						key.position.x = Math.random() * (worldRect.width - 3* worldRect.width/4) + 3* worldRect.width/4;
+						key.position.y = Math.random() * ( worldRect.height/4);
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					} else if(groupname == "group3"){
+						key.position.x = Math.random() * (worldRect.width/4);
+						key.position.y = Math.random() * (worldRect.height - 3*worldRect.height/4) + 3*worldRect.height/4;
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					} else if(groupname == "group4"){
+						key.position.x = Math.random() * (worldRect.width - 3* worldRect.width/4) + 3* worldRect.width/4;
+						key.position.y = Math.random() * (worldRect.height - 3*worldRect.height/4) + 3*worldRect.height/4;
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					} else {
+						key.position.x = Math.random() * (worldRect.width );
+						key.position.y = Math.random() * (worldRect.height);
+						console.log("ip: " + keysData[i].ip_src +" group: " + groupname);
+					}
+				
+					
+					key.ip = keysData[i].ip_src;
+					updateKeyColor( key, key.position.x, key.position.y );
+				
+					keys.push( key );
+				}
+
+				playhead.color = key.color;	
+				
+				playhead.fromKey = key;
+				playhead.positions[0].x = playhead.fromKey.position.x; 
+				playhead.positions[0].y = playhead.fromKey.position.y;
+				
+				
+				if(!(key = checkIPExists(keysData[i].ip_dest))) {
+					key = new Key();
+					if(checkGroup(keysData[i].ip_dest) == "server") {
+						key.position.x = worldRect.width/2;
+						key.position.y =  worldRect.height/2;
+					} else {
+						key.position.x = Math.random() * (worldRect.x + worldRect.width) + worldRect.x;
+						key.position.y = Math.random() * (worldRect.y + worldRect.height) + worldRect.y;
+					}
+					key.ip = keysData[i].ip_dest;
+					updateKeyColor( key, key.position.x, key.position.y );
+					keys.push( key );
+				//add playhead to array
+				}
+				
+				playhead.toKey = key;
+				playhead.data = keysData[i];
+				playheads.push(playhead);
+			}
 		  });
 		 	
 	}
@@ -462,7 +552,7 @@ var KeylightWorld = new function() {
 		} else if(count > 500) {
 			result =40;
 		}
-		return result;
+		return 5;
 	}
 	function checkGroup(ip) {
 		var result = "";
