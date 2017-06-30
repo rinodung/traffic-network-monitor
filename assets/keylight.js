@@ -42,6 +42,8 @@ var KeylightWorld = new function() {
 	var mouseY = (window.innerHeight - worldRect.height);
 	var mouseIsDown = false;
 	var hue = 120;
+	var totalCount;
+	var totalKey;
 	// This is used to keep track of the users last interaction to stop playing sounds after lack of input (save bandwidth)
 	var lastMouseMoveTime = new Date().getTime();
 	
@@ -49,7 +51,7 @@ var KeylightWorld = new function() {
 	
 	//Key Fade Effect
 	
-	var fadeStep = 0.05;
+	var fadeStep = 0.05	;
 	var fadeRadius = 3;
 	this.init = function() {
 		
@@ -328,6 +330,8 @@ var KeylightWorld = new function() {
 	}
 	function loadData() {
 		playheads = [];
+		totalCount = 0;
+		totalKey = 0;
 		
 		var groups = '[{"name":"server", "ip": ["192.168.10.1"]},' +
 					'{"name" : "group1", "ip": ["127.0.0.1", "127.0.0.2"]},'+ 
@@ -343,14 +347,15 @@ var KeylightWorld = new function() {
 		var start = currenttime_s;
 		var end = currenttime_e;
 		var timeD = "/101/" + start + "/" + end +"/";
-		var linkdata = "index.php/data/get"+timeD;
+		var linkdata = "http://127.0.0.1/traffic-network-monitor/index.php/data/get"+timeD;
 		//var linkdata = "http://nguyenchan.ddns.net/traffic-network-monitor/index.php/data/get";
 		//var timedata = {num: 102, start: start, end: end }; 
 		$.getJSON( linkdata)
 		.done(function(data) {
 			
  			var keysData = data;
-			var keysData = sampleTraffic;	//uncomment if using ajax
+			//var keysData = sampleTraffic;	//uncomment if using ajax
+			totalKey = parseInt(keysData.length);
 			keys = [];
 			var key;
 			for(var i = 0; i< keysData.length; i ++) 
@@ -421,14 +426,14 @@ var KeylightWorld = new function() {
 				playhead.data = keysData[i];
 				playheads.push(playhead);
 			}
+				playheads.map(k => {
+				totalCount += parseInt(k.data.count)
+			})
 		})
 		  .done(function() {
 		    console.log( "second success" );
 		  })
 		  .fail(function() {
-
-		  })
-		  .always(function() {
 		    console.log( "complete" );
 		    keys = [];
 		    var sampleTraffic = '[{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.1", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "7891", "protocol" : "udp", "count" : "2", "time" : 1474469036},' +
@@ -448,10 +453,10 @@ var KeylightWorld = new function() {
  					'{"_id" : "57e29cb1eb0fdd0fea4b5086", "ip_src" : "127.0.0.9", "ip_dest" : "192.168.10.1", "port_src" : "51511", "port_dest" : "1891", "protocol" : "udp", "count" : "21", "time" : 1474469036},' +
  				   '{ "_id" : "57e29cb7eb0fdd0fea4b508d", "ip_src" : "127.0.0.10", "ip_dest" : "192.168.10.1", "port_src" : "22", "port_dest" : "51090", "protocol" : "tcp", "count" : "7", "time" : 1474469043}]';
  			
- 			
+
 			var keysData =  JSON.parse(sampleTraffic);	//uncomment if using ajax
-			
 			var key;
+			totalKey = parseInt(keysData.length);
 			for(var i = 0; i< keysData.length; i ++) 
 			{
 				
@@ -520,8 +525,11 @@ var KeylightWorld = new function() {
 				playhead.data = keysData[i];
 				playheads.push(playhead);
 			}
+				playheads.map(k => {
+				totalCount += parseInt(k.data.count)
+
+			})
 		  });
-		 	
 	}
 	//load data every 60 sec
 	setInterval( loadData, 30000 );
@@ -540,19 +548,14 @@ var KeylightWorld = new function() {
 	}
 	//tra ve size theo count
 	function checkCount(count) {
-		var result;
-		if(count < 10) {
-			result = 5;
-		} else if(count > 10 && count < 50) {
-			result = 10;
-		} else if(count > 50 && count <100) {
-			result =20;
-		} else if(count > 100 && count <500) {
-			result =30;
-		} else if(count > 500) {
-			result =40;
+		var result =  count/(totalCount/totalKey);
+		if(result < 1) {
+			result = 1 ;
 		}
-		return 5;
+		else if(result > 10) {
+			result = 10;
+		}
+		return result;
 	}
 	function checkGroup(ip) {
 		var result = "";
@@ -699,7 +702,7 @@ var KeylightWorld = new function() {
 		
 		context.clearRect(worldRect.x, worldRect.y, worldRect.width, worldRect.height);
 		
-		var key, particle, color, i, ilen, j, jlen;
+		var key, particle, color, i, ilen, j, jlen, playhead;
 		var deadKeys = [];
 		
 	
@@ -794,16 +797,16 @@ var KeylightWorld = new function() {
 			//context.stroke();
 			
 			//Generate Fade Effect
-			color = context.createRadialGradient(key.reflection.x, key.reflection.y, 0, key.reflection.x, key.reflection.y, key.size.current*key.scale * fadeRadius);
+			console.log(checkCount(key.count));
+			color = context.createRadialGradient(key.reflection.x, key.reflection.y, 0, key.reflection.x, key.reflection.y, key.size.current*key.scale * fadeRadius * checkCount(key.count));
 			color.addColorStop(0,'rgba('+key.color.r+','+key.color.g+','+key.color.b+','+key.color.a*key.fadeBrightness+')');//default 0, emit 1
 			color.addColorStop(1,'rgba('+key.color.r+','+key.color.g+','+key.color.b+',0)');
 			//hieu ung khi cham
 			context.beginPath();
 			context.fillStyle = color;
-			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale*2, 0, Math.PI*2, true);
+			context.arc(key.reflection.x, key.reflection.y, key.size.current*key.scale* (checkCount(key.count)+2), 0, Math.PI*2, true);
 			context.fill();
 			//context.stroke();
-
 			if(key.fadeBrightness > 0) {
 				key.fadeBrightness -=fadeStep;	
 			}
@@ -828,17 +831,18 @@ var KeylightWorld = new function() {
 			keys.splice( deadKeys.pop(), 1 );
 		}
 		
-		
+		// console.log(playheads);
 		for( i = 0; i <  playheads.length; i++ ) {
 			var playhead = new Playhead();
 			playhead = playheads[i];
-		
+	
 			// The playhead can only be rendered if there are at least two keys
 			if( keys.length > 1 && playhead.index != -1) {
 				
 				//first key to move it
 				//var attractor = keys[playhead.index];
 				var attractor = playhead.toKey;
+				attractor.count = playhead.data.count;
 				//ignore deadkey, move to next position in playhead
 				if( attractor.position.x < 0 || attractor.position.x > worldRect.width || attractor.position.y < 0 || attractor.position.y > worldRect.height ) {
 					// Increment index by one but make sure its within bounds
@@ -868,7 +872,7 @@ var KeylightWorld = new function() {
 					context.beginPath();
 					context.strokeStyle = color;
 					//line width
-					context.lineWidth = checkCount(playhead.data.count) * cp.scale;
+					context.lineWidth = 3 * cp.scale;
 					context.lineCap = 'round';
 					context.moveTo( cp.x + ( np.x - cp.x ) / positionRate, cp.y + ( np.y - cp.y ) / positionRate );
 					//console.log("moveTo" + (cp.x + ( np.x - cp.x ) / positionRate).toString() + ": " +(cp.y + ( np.y - cp.y ) / positionRate  ).toString());
@@ -956,6 +960,7 @@ function Key() {
 	this.fadeBrightness = 0;
 	this.data = null;
 	this.ip = "";
+	this.count= 0;
 }
 Key.prototype = new Point();
 Key.prototype.emit = function( direction ) {
@@ -1019,6 +1024,7 @@ function Playhead() {
 	this.fromKey = null;
 	this.toKey = null;
 	this.data = null;
+	this.count = 0;
 }
 Playhead.prototype.distanceTo = function(p) {
 	var position = this.getPosition();
